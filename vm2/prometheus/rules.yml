@@ -1,0 +1,39 @@
+groups:
+- name: nginx-minio
+  rules:
+  # ---------- NGINX ----------
+
+  # Exporter nedostupan (critical)
+  - alert: NginxExporterDown
+    expr: up{job="nginx"} == 0
+    for: 2m
+    labels:
+      severity: critical
+      service: nginx
+    annotations:
+      summary: "NGINX exporter down na {{ $labels.instance }}"
+      description: "Prometheus ne može scrapati nginx exporter (job=nginx) 2 minute."
+
+  # Aktivne konekcije previsoke (warning) –
+  - alert: NginxHighActiveConnections
+    expr: avg_over_time(nginx_connections_active[5m]) > 100
+    for: 5m
+    labels:
+      severity: warning
+      service: nginx
+    annotations:
+      summary: "NGINX active connections visoko"
+      description: "avg(nginx_connections_active, 5m) > 100 na {{ $labels.instance }}"
+
+  # ---------- MinIO ----------
+
+  # MinIO metrics nedostupne (critical)
+  - alert: MinioMetricsDown
+    expr: up{job="minio"} == 0 or absent(minio_version_info)
+    for: 2m
+    labels:
+      severity: critical
+      service: minio
+    annotations:
+      summary: "MinIO metrics down na {{ $labels.instance }}"
+      description: "Prometheus ne vidi MinIO metrics (job=minio) 2 minute."

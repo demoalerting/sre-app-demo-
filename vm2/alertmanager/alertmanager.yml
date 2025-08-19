@@ -1,0 +1,17 @@
+route:
+  # Email alert
+  receiver: ops-email
+  group_by: [alertname, job, instance]
+  group_wait: 10s
+  group_interval: 2m
+  repeat_interval: 2h
+
+receivers:
+- name: ops-email
+  email_configs:
+  - to: "bilic.vahid@gmail.com"
+    from: "alertmonri@outlook.com"
+    smarthost: "pro.turbo-smtp.com:587"
+    auth_username: "alertmonri@outlook.com"
+    auth_password: "ovdje password"
+    require_tls: true

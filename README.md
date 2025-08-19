@@ -56,7 +56,7 @@ NGINX Exporter: 12708
 
 MinIO Server Metrics: 13502
 
-<!-- !!!!JASNO MI JE BILO DA ZADATAK TRAZI DA SE URADI DEPLOY I SCRAPE 3 CUSTOM METRIKE MEDZUTIM TO NIJE URADZENO!!!!
+!!!!JASNO MI JE BILO DA ZADATAK TRAZI DA SE URADI DEPLOY I SCRAPE 3 CUSTOM METRIKE MEDZUTIM TO NIJE URADZENO!!!!
 Ima jedan dashboard koji prikazuje kao 3 custom metrike ali isti je bukvalno samo copy paste -->
 
 
